@@ -10,6 +10,8 @@ public class DBUtility {
 
     private static ResultSet rset;
     private static ResultSetMetaData rSetMetaData;
+  static  Connection conn = null;
+   static Statement statement = null;
 
     /**
      * This method create connection to the database, execute query and return object ResulSet
@@ -19,15 +21,18 @@ public class DBUtility {
      */
     public static ResultSet getResultSet(String sqlQuery) {
 
-        Connection conn = null;
-        Statement statement = null;
+
         try {
+            //establishing connection with DB
             conn = DriverManager.getConnection(
                     ConfigReader.getPropertyValue("dbUrl"),
                     ConfigReader.getPropertyValue("dbUsername"),
                     ConfigReader.getPropertyValue("dbPassword"));
+
+          //creating a statement to execute query
             statement = conn.createStatement();
 
+            //execute the query and storing the results
             rset = statement.executeQuery(sqlQuery);
 
         } catch (SQLException e) {
@@ -46,6 +51,7 @@ public class DBUtility {
         rset = getResultSet(query);
         rSetMetaData = null;
         try {
+            //getting the data in tabular format so that we can use these in column keys and values retrieval operation
             rSetMetaData = rset.getMetaData();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,5 +87,34 @@ public class DBUtility {
             e.printStackTrace();
         }
         return listFromRset;
+    }
+    public static void closeResultSet(ResultSet rset){
+        if(rset!=null){
+            try{
+                rset.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+    }
+
+    public static void closeStatement(Statement statement){
+        if(statement!=null){
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void closeConnection(Connection conn){
+        if(conn!=null){
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

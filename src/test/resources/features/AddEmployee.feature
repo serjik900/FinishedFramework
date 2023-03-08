@@ -51,3 +51,9 @@ Feature: Add Employee
     And user clicks on save button
     And added employee is displayed in database
 
+@database
+    Scenario: Add employee from frontend and get data from db to verify it
+      And user enter "Sergey" and "Rafik"
+      And user captures employee id
+      And user clicks on save button
+      And added employee is avaliable in my database
