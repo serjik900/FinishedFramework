@@ -86,6 +86,19 @@
             <artifactId>json</artifactId>
             <version>20180813</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.7.1</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.madgag/animated-gif-lib -->
+        <dependency>
+            <groupId>com.madgag</groupId>
+            <artifactId>animated-gif-lib</artifactId>
+            <version>1.2</version>
+        </dependency>
 
     </dependencies>
 

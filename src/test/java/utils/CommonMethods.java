@@ -30,6 +30,8 @@ public class CommonMethods extends PageInitializer {
                 //headless driver doesn`t start browser
                 ChromeOptions chromeOptions=new ChromeOptions();
                 chromeOptions.setHeadless(true);
+                //in you have limited access with proxy and password use setup below
+               // WebDriverManager.chromedriver().proxy("http://username:password@companyproxy.com:port")
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver(chromeOptions);
                 /* WebDriverManager.chromedriver().setup();
